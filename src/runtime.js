@@ -68,7 +68,7 @@ class Uploading {
                 end = Math.min(end + chunkSize, size);
                 blob = runtime.slice(source, start, end);
                 req = request.createChunkRequest(slots.length, blob);
-                req.setHeader('Content-Range', 'bytes ' + start + '-' + (end - 1) + '/' + size);
+                req.setHeader('Content-Range', 'bytes ' + start + '-' + (end - 1) + '/' + size); //是否考虑注释该段代码，因为不是所有场合都需要设置Content-Range，且已提供了setHeader方法，当需要Content-Range时调用setHeader方法
                 slot = this.slot(req, request.getChunkRetries());
                 slot.progress(progress).done(done).fail(fail);
                 slots.push(slot);
